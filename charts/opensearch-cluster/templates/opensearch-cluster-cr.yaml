@@ -11,6 +11,10 @@ spec:
     additionalConfig:
       {{ toYaml .Values.opensearchCluster.bootstrap.additionalConfig | nindent 6 }}
     {{- end }}
+    {{- if .Values.opensearchCluster.bootstrap.nodeSelector }}
+    nodeSelector:
+      {{ toYaml .Values.opensearchCluster.bootstrap.nodeSelector | nindent 6 }}
+    {{- end }}
   {{- end }}
   {{- if .Values.opensearchCluster.initHelper }}
   initHelper:
@@ -40,6 +44,9 @@ spec:
     {{- end }}
     vendor: opensearch
     serviceName: {{ .Values.opensearchCluster.general.serviceName }}
+    {{- if .Values.opensearchCluster.general.serviceAccount }}
+    serviceAccount: {{ .Values.opensearchCluster.general.serviceAccount }}
+    {{- end }}
     {{- if .Values.opensearchCluster.general.pluginsList }}
     pluginsList:
       {{ toYaml .Values.opensearchCluster.general.pluginsList | nindent 6 }}
@@ -70,8 +77,10 @@ spec:
   {{- range $key, $val := .Values.opensearchCluster.general.additionalVolumes }}
       - name: {{ $val.name }}
         path: {{ $val.path }}
+        {{- if $val.secret }}
         secret:
           secretName: {{ $val.secret.secretName }}
+        {{- end}}
   {{- end -}}
     {{- end }}
     {{- if .Values.opensearchCluster.general.additionalConfig }}
@@ -174,6 +183,10 @@ spec:
     additionalConfig:
       {{ toYaml .Values.opensearchCluster.dashboards.additionalConfig | nindent 6 }}
     {{- end }}
+    {{- if .Values.opensearchCluster.dashboards.nodeSelector }}
+    nodeSelector:
+      {{ toYaml .Values.opensearchCluster.dashboards.nodeSelector | nindent 6 }}
+    {{- end }}
   {{- end }}
   {{- if .Values.opensearchCluster.confMgmt }}
   confMgmt:
@@ -196,6 +209,10 @@ spec:
       {{- if $val.nodeSelector }}
       nodeSelector:
         {{- toYaml $val.nodeSelector | nindent 8 }}
+      {{- end }}
+      {{- if  $val.affinity }}
+      affinity:
+        {{ toYaml  $val.affinity | nindent 8 }}
       {{- end }}
       {{- if  $val.labels }}
       labels: # Add any extra labels as key-value pairs here
