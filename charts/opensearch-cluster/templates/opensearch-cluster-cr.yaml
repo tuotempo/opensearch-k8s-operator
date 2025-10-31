@@ -77,10 +77,17 @@ spec:
   {{- range $key, $val := .Values.opensearchCluster.general.additionalVolumes }}
       - name: {{ $val.name }}
         path: {{ $val.path }}
+        {{- if $val.subPath }}
+        subPath: {{ $val.subPath }}
+        {{- end }}
         {{- if $val.secret }}
         secret:
           secretName: {{ $val.secret.secretName }}
-        {{- end}}
+        {{- end }}
+        {{- if $val.configMap }}
+        configMap:
+          name: {{ $val.configMap.name }}
+        {{- end }}
   {{- end -}}
     {{- end }}
     {{- if .Values.opensearchCluster.general.additionalConfig }}
