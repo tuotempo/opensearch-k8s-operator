@@ -11,6 +11,16 @@ entries:
     urls:
     - https://tuotempo.github.io/opensearch-k8s-operator/opensearch-cluster-2.5.1-tt.tgz
     version: 2.5.1-tt
+  - apiVersion: v2
+    appVersion: 2.5.1-2tt
+    created: "2025-10-31T15:49:54.757480264Z"
+    description: A Helm chart for OpenSearch Cluster
+    digest: 0b0baf5c51c9b822351ae9c6cad7e96a6854bb3cf6fd72ce461335cbe37a6986
+    name: opensearch-cluster
+    type: application
+    urls:
+    - https://tuotempo.github.io/opensearch-k8s-operator/opensearch-cluster-2.5.1-2tt.tgz
+    version: 2.5.1-2tt
   opensearch-operator:
   - apiVersion: v2
     appVersion: 2.5.1-tt
@@ -22,4 +32,14 @@ entries:
     urls:
     - https://tuotempo.github.io/opensearch-k8s-operator/opensearch-operator-2.5.1-tt.tgz
     version: 2.5.1-tt
-generated: "2024-02-05T10:25:41.635148435Z"
+  - apiVersion: v2
+    appVersion: 2.5.1-2tt
+    created: "2025-10-31T15:49:54.759834357Z"
+    description: The OpenSearch Operator Helm chart for Kubernetes
+    digest: 0bb22c86f4cc0f3df40e1502c5438d0fec14314178f663036a6d52073c393b09
+    name: opensearch-operator
+    type: application
+    urls:
+    - https://tuotempo.github.io/opensearch-k8s-operator/opensearch-operator-2.5.1-2tt.tgz
+    version: 2.5.1-2tt
+generated: "2025-10-31T15:49:54.757001066Z"
